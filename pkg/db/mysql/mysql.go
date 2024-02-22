@@ -4,6 +4,7 @@ import (
 	"time"
 
 	log "github.com/ningzining/L-log"
+	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -29,10 +30,10 @@ func (c *Config) complete() {
 	}
 }
 
-func NewDB(cfg Config) (*gorm.DB, error) {
+func NewMysqlClient(cfg Config) (*gorm.DB, error) {
 	cfg.complete()
 	// 连接mysql并且获取实例
-	db, err := gorm.Open(mysql.Open(cfg.Dsn), &gorm.Config{
+	client, err := gorm.Open(mysql.Open(cfg.Dsn), &gorm.Config{
 		Logger: cfg.Logger,
 	})
 	if err != nil {
@@ -40,7 +41,7 @@ func NewDB(cfg Config) (*gorm.DB, error) {
 		return nil, err
 	}
 
-	sqlDB, err := db.DB()
+	sqlDB, err := client.DB()
 	if err != nil {
 		log.Fatalf("mysql获取实例异常: %s", err.Error())
 		return nil, err
@@ -56,6 +57,7 @@ func NewDB(cfg Config) (*gorm.DB, error) {
 		log.Fatalf("mysql ping失败: %s", err.Error())
 		return nil, err
 	}
+	log.Infof("mysql初始化成功", zap.String("dsn", cfg.Dsn))
 
-	return db, nil
+	return client, nil
 }
