@@ -54,7 +54,7 @@ func NewMysqlClient(cfg Config) (*gorm.DB, error) {
 	sqlDB.SetConnMaxLifetime(cfg.MaxConnectionLifeTime)
 
 	if err := sqlDB.Ping(); err != nil {
-		log.Fatalf("mysql ping失败: %s", err.Error())
+		log.Fatalf("mysql ping异常: %s", err.Error())
 		return nil, err
 	}
 	log.Infof("mysql初始化成功", zap.String("dsn", cfg.Dsn))

@@ -26,7 +26,7 @@ func NewRedisClient(cfg Config) (*redis.Client, error) {
 	})
 	_, err := client.Ping(context.Background()).Result()
 	if err != nil {
-		log.Fatalf("redis连接异常: %s", err.Error())
+		log.Fatalf("redis ping异常: %s", err.Error())
 		return nil, err
 	}
 	log.Infof("redis初始化成功", zap.String("host", cfg.Host), zap.Int("db", cfg.DB))
