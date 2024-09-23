@@ -29,7 +29,7 @@ func (p *Paginator) Offset() int {
 	return (p.Index - 1) * p.Size
 }
 
-func (p *Paginator) AddInterceptor() func(db *gorm.DB) *gorm.DB {
+func (p *Paginator) Interceptor() func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		return db.Offset(p.Offset()).Limit(p.Size)
 	}
