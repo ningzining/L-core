@@ -1,35 +1,34 @@
 package request
 
 type PageParam struct {
-	Page     int64 `form:"page"`      // 页码
-	PageSize int64 `form:"page_size"` // 页大小
+	PageIndex int64 `form:"page_index"` // 页码
+	PageSize  int64 `form:"page_size"`  // 页大小
 }
 
-func NewPageParam(page, pageSize int64) *PageParam {
-	if page <= 0 {
-		page = 1
+func NewPageParam(pageIndex, pageSize int64) *PageParam {
+	if pageIndex <= 0 {
+		pageIndex = 1
 	}
 	if pageSize <= 0 {
 		pageSize = 10
 	}
 	return &PageParam{
-		Page:     page,
-		PageSize: pageSize,
+		PageIndex: pageIndex,
+		PageSize:  pageSize,
 	}
 }
 
 func (p PageParam) GetPage() int64 {
-	if p.Page <= 0 {
+	if p.PageIndex <= 0 {
 		return 1
 	}
-	return p.Page
+	return p.PageIndex
 }
 
 func (p PageParam) GetPageSize() int64 {
 	if p.PageSize <= 0 {
 		return 10
 	}
-
 	return p.PageSize
 }
 

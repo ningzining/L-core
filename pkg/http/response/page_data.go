@@ -1,17 +1,17 @@
 package response
 
 type PageData struct {
-	Data     any   `json:"data"`
-	Page     int64 `json:"page"`
-	PageSize int64 `json:"page_size"`
-	Total    int64 `json:"total"`
+	Data      any   `json:"data"`
+	PageIndex int64 `json:"page_index"`
+	PageSize  int64 `json:"page_size"`
+	Total     int64 `json:"total"`
 }
 
-func NewPageData(data any, page, pageSize, total int64) *PageData {
+func NewPageData(data any, pageIndex, pageSize, total int64) *PageData {
 	return &PageData{
-		Data:     data,
-		Page:     page,
-		PageSize: pageSize,
-		Total:    total,
+		Data:      data,
+		PageIndex: pageIndex,
+		PageSize:  pageSize,
+		Total:     total,
 	}
 }

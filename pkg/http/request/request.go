@@ -13,8 +13,8 @@ func GetIdParam(ctx *gin.Context) uint64 {
 }
 
 func GetPageParam(ctx *gin.Context) *PageParam {
-	page, _ := strconv.ParseInt(ctx.Query("page"), 10, 64)
+	pageIndex, _ := strconv.ParseInt(ctx.Query("page_index"), 10, 64)
 	pageSize, _ := strconv.ParseInt(ctx.Query("page_size"), 10, 64)
 
-	return NewPageParam(page, pageSize)
+	return NewPageParam(pageIndex, pageSize)
 }
