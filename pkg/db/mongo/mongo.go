@@ -14,7 +14,7 @@ type Config struct {
 	Uri string
 }
 
-func NewMongoClient(cfg Config) (*mongo.Client, error) {
+func NewClient(cfg Config) (*mongo.Client, error) {
 	mongoClient, err := mongo.Connect(context.Background(), options.Client().ApplyURI(cfg.Uri))
 	if err != nil {
 		log.Fatalf("mongo启动失败: %s", err.Error())

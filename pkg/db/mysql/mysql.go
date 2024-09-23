@@ -30,7 +30,7 @@ func (c *Config) complete() {
 	}
 }
 
-func NewMysqlClient(cfg Config) (*gorm.DB, error) {
+func NewClient(cfg Config) (*gorm.DB, error) {
 	cfg.complete()
 	// 连接mysql并且获取实例
 	client, err := gorm.Open(mysql.Open(cfg.Dsn), &gorm.Config{
