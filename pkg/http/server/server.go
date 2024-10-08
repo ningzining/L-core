@@ -9,6 +9,8 @@ import (
 	"os/signal"
 	"time"
 
+	_ "net/http/pprof"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,7 +29,7 @@ func New(port int64) *Server {
 func (s *Server) Start() {
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%d", s.port),
-		Handler: gin.Default(),
+		Handler: s.Engine,
 	}
 	go func() {
 		if err := srv.ListenAndServe(); err != nil {
