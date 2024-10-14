@@ -4,24 +4,26 @@ import (
 	"github.com/nsqio/go-nsq"
 )
 
-type callbackFunc func(msg *nsq.Message) error
-
-type Consumer struct {
-	*nsq.Consumer
+type ConsumerHandler struct {
 }
 
-func NewConsumer(topic, channel, addr string, callback callbackFunc) (*Consumer, error) {
+func NewConsumerHandler() nsq.Handler {
+	return &ConsumerHandler{}
+}
+
+func (d *ConsumerHandler) HandleMessage(message *nsq.Message) error {
+	return nil
+}
+
+func NewConsumer(topic, channel, addr string, handler nsq.Handler) (*nsq.Consumer, error) {
 	consumer, err := nsq.NewConsumer(topic, channel, nsq.NewConfig())
 	if err != nil {
 		return nil, err
 	}
-	consumer.AddHandler(nsq.HandlerFunc(func(msg *nsq.Message) error {
-		return callback(msg)
-	}))
+	consumer.AddHandler(handler)
 	if err := consumer.ConnectToNSQD(addr); err != nil {
 		return nil, err
 	}
-	c := new(Consumer)
-	c.Consumer = consumer
-	return c, nil
+
+	return consumer, nil
 }
