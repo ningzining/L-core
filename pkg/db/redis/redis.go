@@ -29,7 +29,7 @@ func NewClient(cfg Config) (*redis.Client, error) {
 		log.Fatalf("redis ping异常: %s", err.Error())
 		return nil, err
 	}
-	log.Infof("redis初始化成功", zap.String("host", cfg.Host), zap.Int("db", cfg.DB))
+	log.Info("redis初始化成功", zap.String("host", cfg.Host), zap.Int("db", cfg.DB))
 
 	return client, nil
 }

@@ -1,4 +1,4 @@
-module github.com/ningzining/lazycore
+module github.com/ningzining/L-core
 
 go 1.21.3
 
@@ -6,9 +6,11 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/ningzining/L-errors v0.0.0-20240221101553-1dcb3f9246c7
-	github.com/ningzining/L-log v0.0.0-20240222035512-d07dc98905ba
+	github.com/ningzining/L-log v0.0.0-20250311152756-880c880f0759
+	github.com/nsqio/go-nsq v1.1.0
 	go.mongodb.org/mongo-driver v1.14.0
 	go.uber.org/zap v1.27.0
+	golang.org/x/sync v0.1.0
 	gorm.io/driver/mysql v1.5.4
 	gorm.io/gorm v1.25.7
 )
@@ -38,7 +40,6 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible // indirect
-	github.com/nsqio/go-nsq v1.1.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.12 // indirect
@@ -50,9 +51,9 @@ require (
 	golang.org/x/arch v0.7.0 // indirect
 	golang.org/x/crypto v0.19.0 // indirect
 	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.17.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
